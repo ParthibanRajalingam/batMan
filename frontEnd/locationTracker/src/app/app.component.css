@@ -1,0 +1,17 @@
+.content{
+    width:50%;
+    margin:0 auto;
+}
+md-card{
+    margin:10px;
+    }
+
+     
+md-card-title{
+    margin: 13px;
+     font-weight: bold;
+}
+
+md-card-content{
+    margin:5px;
+}

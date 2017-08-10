@@ -1,0 +1,16 @@
+{
+  "name": "locationtracker",
+  "version": "1.0.0",
+  "description": "service for location tracker app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Parthiban",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4",
+    "fs": "0.0.1-security"
+  }
+}

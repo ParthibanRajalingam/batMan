@@ -1,21 +1,4 @@
-
-{
-   "user1" : {
-      "name" : "mahesh",
-	  "password" : "password1",
-	  "profession" : "teacher",
-	  "id": 1
-   },
-   "user2" : {
-      "name" : "suresh",
-	  "password" : "password2",
-	  "profession" : "librarian",
-	  "id": 2
-   },
-   "user3" : {
-      "name" : "ramesh",
-	  "password" : "password3",
-	  "profession" : "clerk",
-	  "id": 3
-   }
-}
+[{ "name":"Nokia", "lastOnline":"31/4/2017", "lastFound":"New York" },
+{ "name":"Samsung", "lastOnline":"31/10/2017", "lastFound":"Coimbatore TN" },
+{ "name":"vivo", "lastOnline":"9.10.2017", "lastFound":"India Chennai" },
+{ "name":"MI", "lastOnline":"6.6.2017", "lastFound":"India Delhi" }]

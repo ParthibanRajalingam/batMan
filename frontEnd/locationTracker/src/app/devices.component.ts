@@ -10,18 +10,15 @@ import {HttpCallsService} from './http-calls.service';
 })
 export class DevicesComponent implements OnInit {
 
-devices= [{ "name":"Nokia", "lastOnline":"31/4/2017", "lastFound":"New York" },
-{ "name":"Samsung", "lastOnline":"31/10/2017", "lastFound":"Coimbatore TN" },
-{ "name":"vivo", "lastOnline":"9.10.2017", "lastFound":"India Chennai" },
-{ "name":"MI", "lastOnline":"6.6.2017", "lastFound":"India Delhi" }];
+devices : any [];
 
   constructor(private httpService:HttpCallsService) { }
-
+ 
   ngOnInit() {
     this.httpService.getUser().subscribe(
-    (data: Response) =>  console.log(data)
+    (data: any) => this.devices=data
     );
-     
+
   }
 
 }

@@ -3,22 +3,34 @@
     <md-card-title>LOGIN TO TRACK YOUR DEVICE</md-card-title>
   </md-card-header>
   <md-card-content>
+    <form (ngSubmit)="onSubmit(formData)" #formData="ngForm">
     <table class="full-width" cellspacing="0"><tr><td>
+      <div class="form-group">
     <md-input-container class="full-width">
-      <input mdInput type="email" placeholder="EMAIL ID">
+      <input mdInput (click)="onClick()" type="email" placeholder="EMAIL ID"
+      ngModel name="email"
+      pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+      required>
     </md-input-container>
+      </div>
     </td>
     </tr>
     <tr><td>
+      <div class="form-group">
     <md-input-container class="full-width">
-      <input mdInput type="password" placeholder="PASSWORD">
+      <input mdInput type="password" (click)="onClick()" placeholder="PASSWORD"
+       ngModel name="password"
+       required>
     </md-input-container>
+      </div>
     </td>
     </tr>
     <tr><td>
-    <button md-raised-button>LOGIN</button></td>
+    <button md-raised-button color='primary' type='submit' [disabled]="!formData.valid" >LOGIN</button></td>
     </tr>
     </table>
+   <div> {{errorMessage}}</div>
+    </form>
   </md-card-content>
   <md-card-actions>
 

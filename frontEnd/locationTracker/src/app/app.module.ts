@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, } from '@angular/core';
 import { HttpModule }    from '@angular/http';
+import { FormsModule }   from '@angular/forms'; 
 import {MdButtonModule, MdCheckboxModule,MdInputModule,MdToolbarModule,MdCardModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
@@ -26,7 +27,8 @@ import { RegisterComponent } from './register/register.component'
       APP_ROUTES,
       { enableTracing: true } // <-- debugging purposes only
     ),
-    BrowserModule,MdButtonModule, MdCheckboxModule,MdInputModule,MdToolbarModule,
+        
+    BrowserModule,FormsModule,MdButtonModule, MdCheckboxModule,MdInputModule,MdToolbarModule,
     BrowserAnimationsModule,MdCardModule,HttpModule
   ],
    exports: [MdButtonModule, MdCheckboxModule,MdInputModule,MdToolbarModule,

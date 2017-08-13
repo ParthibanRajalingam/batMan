@@ -1,3 +1,4 @@
+var saltAndHash = require('./saltAndHash');
 var express = require('express');
 var app = express();
 var fs = require("fs");
@@ -79,7 +80,7 @@ var server = app.listen(8081,"127.0.0.1", function () {
   var host = server.address().address
   var port = server.address().port
   console.log("HOST--"+host);
-
+  saltAndHash.saltHashPassword('test');
   console.log("Example app listening at http://%s:%s", host, port)
 
 })

@@ -6,6 +6,7 @@ import { RegisterComponent } from "./register/register.component";
 
 export const APP_ROUTES =[
     {path:'',component:LoginComponent},
+    {path:'login',component:LoginComponent},
     {path:'home',component:HomeComponent},
     {path:'register',component:RegisterComponent}
 ];

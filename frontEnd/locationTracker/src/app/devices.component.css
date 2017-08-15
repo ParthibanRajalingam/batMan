@@ -6,3 +6,8 @@ md-card-content{
     text-align: left;
 }
 
+
+md-card-header{
+color : #3f51b5;
+background-color: #DCDCDC;
+}

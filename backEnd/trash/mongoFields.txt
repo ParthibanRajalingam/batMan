@@ -1,0 +1,51 @@
+user_details:
+{"email":"test@gmail.com"
+"password":"test123"
+"userName":"test"
+"salt":"test"
+"active":"Y"
+"premium":"N"
+"user_created_date":"TEST"
+"user_updated_date":"TEST"
+"user_activated_date":"TEST"
+"user_last_logged_in_date":"TEST"
+"premium_member":"TEST"
+"premium_package_type":"TEST"
+"premium_start_date":"TEST"
+"premium_end_date":"TEST"}
+
+
+Premium packages
+Premium pack name
+premium pack price
+premium pack details
+premium start date
+
+------------------------------------------------------------------------------------------
+Device Details
+email
+device name
+device type
+imei
+mobile number
+network carrier name
+device_registered_date
+battery type
+Tracking intervals(mins)
+
+device_tracked_details
+location-lat
+location-lon
+Area
+city
+state 
+country
+battery status
+network status
+Mobile number
+from time
+to time
+created date
+updated date
+Updated times
+----------------------------------------------------------------------------------------------

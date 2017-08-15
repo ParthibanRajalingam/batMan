@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, } from '@angular/core';
 import { HttpModule }    from '@angular/http';
 import { FormsModule }   from '@angular/forms'; 
-import {MdButtonModule, MdCheckboxModule,MdInputModule,MdToolbarModule,MdCardModule} from '@angular/material';
+import {MdButtonModule, MdCheckboxModule,MdInputModule,MdToolbarModule,MdCardModule,MdSnackBarModule,MdIconModule,
+  MdMenuModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -12,7 +13,7 @@ import {HttpCallsService} from './http-calls.service';
 import { LoginComponent } from './login/login.component';
 import {  APP_ROUTES } from './app.routes';
 import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './register/register.component'
+import { RegisterComponent } from './register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,7 @@ import { RegisterComponent } from './register/register.component'
     ),
         
     BrowserModule,FormsModule,MdButtonModule, MdCheckboxModule,MdInputModule,MdToolbarModule,
-    BrowserAnimationsModule,MdCardModule,HttpModule
+    BrowserAnimationsModule,MdCardModule,HttpModule,MdSnackBarModule,MdMenuModule,MdIconModule
   ],
    exports: [MdButtonModule, MdCheckboxModule,MdInputModule,MdToolbarModule,
    BrowserAnimationsModule,MdCardModule],

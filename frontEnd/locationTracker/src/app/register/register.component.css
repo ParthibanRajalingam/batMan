@@ -1,0 +1,31 @@
+.content{
+    width:50%;
+    min-width: 200px;
+    max-width: 400px;
+    max-height: 700px;
+    min-height: 250px;
+    margin:5% auto 0 auto;
+}
+md-card{
+    margin:10px;
+    }
+
+     
+md-card-title{
+    margin: 13px;
+     font-weight: bold;
+}
+
+md-card-content{
+    margin:5px;
+}
+
+.full-width {
+  margin-left: 8%;
+  width: 80%;
+}
+
+.fp{
+    font-size:''; 
+    font-weight: lighter;
+}

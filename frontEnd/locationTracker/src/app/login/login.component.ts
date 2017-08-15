@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router'
+import {HttpCallsService} from '.././http-calls.service';
 
 @Component({
   selector: 'app-login',
@@ -8,12 +9,19 @@ import { Router } from '@angular/router'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  loginFlag :any;
+  responseKey='result';
 errorMessage='';
-inMail='';
-inPassword='';
+user={
+email : '',
+pwd:''
+}
+
 inData :any =null;
 jsonInData: any = null;
-constructor(private router: Router) { }
+constructor(private router: Router,
+private httpService: HttpCallsService 
+) { }
 
 onClick(){
   this.errorMessage='';
@@ -21,16 +29,19 @@ onClick(){
 
 onSubmit(formData : NgForm){
 
-this.inData=JSON.stringify(formData.value);
-this.jsonInData=JSON.parse(this.inData);
-this.inMail=this.jsonInData.email;
-this.inPassword=this.jsonInData.password;
-if((this.inMail=='parthiban.rajalingam@gmail.com') && (this.inPassword=='test')){
-this.router.navigate(['home']);
-}
-else{
-this.errorMessage="invalid attempt";
-}
+this.httpService.login(this.user).subscribe (data =>{
+   this.loginFlag=data[this.responseKey];
+//console.log('------------'+this.loginFlag);
+// Save data to sessionStorage
+sessionStorage.setItem('key', 'true');
+   if(this.loginFlag=="true"){
+     this.router.navigate(['/home']);
+   }
+   else{
+this.errorMessage="invalid credentials";
+   }
+  
+});
 
 }
 

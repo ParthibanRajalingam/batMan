@@ -1,0 +1,69 @@
+use trackMyDevice
+-----------------------------------------------
+db.user_details.insert({email:'test@gmail.com',
+password:'test123',
+userName:'test',
+salt:'test',
+active:'Y',
+premium:'N',
+user_created_date:'TEST',
+user_updated_date:'TEST',
+user_activated_date:'TEST',
+user_last_logged_in_date:'TEST',
+premium_member:'TEST',
+premium_package_type:'TEST',
+premium_start_date:'TEST',
+premium_end_date:'TEST'})
+-----------------------------------------------
+db.premium_pack_details.insert({
+premium_pack_name:'TEST',
+premium	_pack_price:'TEST',
+premium_pack_details:'TEST',
+premium_pack_created_date:'TEST'
+})
+-----------------------------------------------
+
+db.devices.insert({
+	email:'parthiban.rajalingam@gmail.com',
+	device_details: [{
+	device_name:'MOTO',
+	device_type:'Android',
+	imei:'123456789',
+	mobile_number:'789456123',
+	network_operator:'Airtel',
+	device_registered_date:'TEST',
+	battery_size:'2000mAh',
+	track_intervals:'2',
+	last_updated_date:'TEST',
+		address:[{
+	area:'Karumathampatti',
+	city:'coimbatore',
+	state:'TN',
+	country:'IND'}],
+	location_lat:'11.1145N',
+	location_long:'77.1801E',
+
+	}]
+	})
+
+db.tracking_details.insert({
+	imei:123456789,
+	tracking_details:[
+	{
+	location_lat:'11.1145N',
+	location_long:'77.1801E',
+	address:[{
+	area:'Karumathampatti',
+	city:'coimbatore',
+	state:'TN',
+	country:'IND'}]
+	,
+	battery_status:'100%',
+	network_status:'100%',
+	mobile_number:'123456789',
+	from_time:'TEST',
+	to_time:'TEST',
+	created_date:'TEST',
+	updated_date:'TEST'
+	}]
+})

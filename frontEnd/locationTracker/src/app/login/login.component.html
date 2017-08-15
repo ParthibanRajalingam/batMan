@@ -7,7 +7,7 @@
     <table class="full-width" cellspacing="0"><tr><td>
       <div class="form-group">
     <md-input-container class="full-width">
-      <input mdInput (click)="onClick()" type="email" placeholder="EMAIL ID"
+      <input mdInput (click)="onClick()" type="email" placeholder="EMAIL ID" [(ngModel)]=user.email
       ngModel name="email"
       pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
       required>
@@ -18,7 +18,7 @@
     <tr><td>
       <div class="form-group">
     <md-input-container class="full-width">
-      <input mdInput type="password" (click)="onClick()" placeholder="PASSWORD"
+      <input mdInput type="password" [(ngModel)]=user.pwd (click)="onClick()" placeholder="PASSWORD"
        ngModel name="password"
        required>
     </md-input-container>
@@ -36,7 +36,7 @@
 
   <a md-button routerLink="." class="fp" style="margin-right: 10%;">Forgot Password?</a> 
  
-  <a md-button routerLink="register"  style="margin-left: 10%;">New User?</a> 
+  <a md-button routerLink="/register"  style="margin-left: 10%;">New User?</a> 
   
   </md-card-actions>
 </md-card>

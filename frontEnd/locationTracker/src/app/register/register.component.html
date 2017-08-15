@@ -1,3 +1,62 @@
-<p>
-  register works!
-</p>
+<md-card class="content">
+  <md-card-header>
+    <md-card-title>REGISTER TO TRACK YOUR DEVICE</md-card-title>
+  </md-card-header>
+  <md-card-content>
+    <form (ngSubmit)="onSubmit()" #formData="ngForm">
+    <table class="full-width" cellspacing="0">
+       <tr>
+            <td>
+                <md-input-container class="full-width" >
+      <input mdInput type="text"  placeholder="USERNAME" [(ngModel)]="user.userName"
+        name="username"
+       >
+       </md-input-container>
+            </td>
+        </tr>
+      <tr><td>
+      <div class="form-group">
+    <md-input-container class="full-width">
+      <input mdInput  type="email" placeholder="EMAIL ID"
+       name="email" [(ngModel)]="user.email"  
+      pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+      required>
+    </md-input-container>
+      </div>
+    </td>
+    </tr>
+    <tr><td>
+      <div class="form-group">
+    <md-input-container class="full-width">
+      <input mdInput type="password" [(ngModel)]="user.pwd"  placeholder="PASSWORD"
+        name="password"
+       required>
+    </md-input-container>
+      </div>
+    </td>
+    </tr>
+      <tr><td>
+      <div class="form-group">
+    <md-input-container class="full-width">
+      <input mdInput type="password" [(ngModel)]="user.cpwd"
+      placeholder="CONFIRM PASSWORD"
+        name="confirmPassword"
+       required >
+    </md-input-container>
+      </div>
+    </td>
+    </tr>
+    <tr><td>
+    <button md-raised-button color='primary' type='submit' [disabled]="!formData.valid" >REGISTER</button></td>
+    </tr>
+    </table>
+    </form>
+  </md-card-content>
+  <md-card-actions>
+
+  <a md-button routerLink="" style="margin-right: 10%;">BACK TO LOGIN</a> 
+ 
+  <a md-button routerLink="register"  style="margin-left: 10%;">HELP?</a> 
+  
+  </md-card-actions>
+</md-card>

@@ -6,8 +6,17 @@ md-card-content{
     text-align: left;
 }
 
+md-card-title{
+        margin-left: 13px;
+    margin-top: 15px;
+    font-weight: bold;
 
+}
 md-card-header{
 color : #3f51b5;
 background-color: #DCDCDC;
+}
+
+md-icon{
+margin-top: 10px;
 }

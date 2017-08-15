@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import {  APP_ROUTES } from './app.routes';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { TrackingDetailsComponent } from './tracking-details/tracking-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { RegisterComponent } from './register/register.component';
     DevicesComponent,
     LoginComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    TrackingDetailsComponent
   ],
   imports: [
      RouterModule.forRoot(

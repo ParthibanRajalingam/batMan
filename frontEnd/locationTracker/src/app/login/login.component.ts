@@ -46,6 +46,17 @@ this.errorMessage="invalid credentials";
 }
 
   ngOnInit() {
+    //Detect the client mobile or desktop
+     var ua = navigator.userAgent;
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(ua))
+       console.log('a.mobile-other');//all mobile except chrome
+
+    else if(/Chrome/i.test(ua))
+       console.log('a.chrome');//desktop -chrome
+     
+
+    else
+       console.log('a.desktop-other');//other browser desktop
   }
 
 }

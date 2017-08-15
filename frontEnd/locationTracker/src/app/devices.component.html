@@ -7,9 +7,19 @@
     <md-icon>phone_iphone</md-icon>
   </md-card-header>
   <md-card-content>
+    <div style="float:left">
+     <p> IMEI NUMBER: {{device.imei}}</p>
+<p> TRACKING INTERVALS: {{device.track_intervals}} Minutes</p>
+    <a md-raised-button color="primary" routerLink="/trackingDetails">MORE DETAILS</a>
+    </div>
+    <div style="margin-left: 55%;">
     <p> LAST ONLINE: {{device.last_updated_date}}</p>
     <p> LAST FOUND: {{device.address[0].area}}</p>
-    
+    <a md-raised-button color="primary" routerLink=".">SEE ON MAP</a>
+
+    </div>
+
+ 
   </md-card-content>
   </md-card>
 </div>

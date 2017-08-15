@@ -1,2 +1,15 @@
 validation
 error handling
+UI Improvisation
+sort by date
+track_list ui
+concentrate more on UI
+Design an icon
+add footer
+activate through mail by sending mail link
+
+write css for mobile and desktop
+
+adding maps
+https://developers.google.com/maps/documentation/javascript/events#EventArguments
+https://stackoverflow.com/questions/15792655/add-marker-to-google-map-on-click

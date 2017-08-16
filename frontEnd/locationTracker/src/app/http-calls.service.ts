@@ -18,8 +18,8 @@ login(user : any){
 
 
 
-  getUser(){
-    return this.http.get('http://127.0.0.1:8081/devices?email=parthiban.rajalingam@gmail.com')
+  getUser(mail){
+    return this.http.get('http://127.0.0.1:8081/devices?email='+mail)
     .map((response: Response) =>response.json());
   }
 

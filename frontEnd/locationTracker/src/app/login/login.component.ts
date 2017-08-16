@@ -16,7 +16,6 @@ user={
 email : '',
 pwd:''
 }
-
 inData :any =null;
 jsonInData: any = null;
 constructor(private router: Router,
@@ -34,6 +33,7 @@ this.httpService.login(this.user).subscribe (data =>{
 //console.log('------------'+this.loginFlag);
 // Save data to sessionStorage
 sessionStorage.setItem('key', 'true');
+sessionStorage.setItem('email',this.user.email);
    if(this.loginFlag=="true"){
      this.router.navigate(['/home']);
    }

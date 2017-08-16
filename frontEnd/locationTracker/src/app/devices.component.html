@@ -7,19 +7,38 @@
     <md-icon>phone_iphone</md-icon>
   </md-card-header>
   <md-card-content>
-    <div style="float:left">
+    <div style="display: inline-block;">
      <p> IMEI NUMBER: {{device.imei}}</p>
 <p> TRACKING INTERVALS: {{device.track_intervals}} Minutes</p>
     <a md-raised-button color="primary" routerLink="/trackingDetails">MORE DETAILS</a>
     </div>
-    <div style="margin-left: 55%;">
+    <div style="display: inline-block; margin-left:10%">
     <p> LAST ONLINE: {{device.last_updated_date}}</p>
     <p> LAST FOUND: {{device.address[0].area}}</p>
-    <a md-raised-button color="primary" routerLink=".">SEE ON MAP</a>
+    <button md-raised-button color="primary" (click)="seeOnMap(device.location_lat,device.location_long)" routerLink=".">SEE ON MAP</button>
 
     </div>
 
  
   </md-card-content>
   </md-card>
+</div>
+
+<div *ngIf="noDevice">
+<md-card>
+
+ <md-card-header>
+    <md-card-title>NO ACTIVE DEVICES FOUND</md-card-title>
+    <md-icon>phone_iphone</md-icon>
+  </md-card-header>
+  <md-card-content>
+    <div style="margin: auto; width: 50%;">
+    <md-icon style="font-size: 200px; color: rgba(0, 0, 0, 0.54);">cloud_download</md-icon>
+    </div>
+  </md-card-content>
+  <md-card-footer  style="margin-bottom: 3%; ">
+    KINDLY DOWNLOAD THE APP IN YOUR MOBILE AND SIGN IN TO TRACK THE DEVICE
+    </md-card-footer>
+  </md-card>
+
 </div>

@@ -12,17 +12,20 @@ export class DevicesComponent implements OnInit {
 devices : any ;
 deviceDetails :any;
 deviceDetailsKey='device_details';
-deviceNameKey='device_name';
-device_name ='TEST';
 i : number=0;
-constructor(private httpService:HttpCallsService,
+noDevice : boolean=false;
+
+constructor(
+  private httpService:HttpCallsService,
   private router: Router) { }
+
  key = sessionStorage.getItem('key') ;
   ngOnInit() {
     if(this.key== "true"){
-    this.httpService.getUser().subscribe(
+    this.httpService.getUser(sessionStorage.getItem('email')).subscribe(
     (data: any) => {
       const deviceDetailStore=[];
+      if(data.length != 0){
       for(this.i=0; this.i<data.length;this.i++){
         deviceDetailStore.push(data[this.i][this.deviceDetailsKey][0]);
         console.log(data);
@@ -32,6 +35,12 @@ constructor(private httpService:HttpCallsService,
       this.deviceDetails=deviceDetailStore;
       console.log('&&&'+this.deviceDetails);
     }
+      else{
+    console.log('no data found');
+    this.noDevice=true;
+  }
+  }
+
     );
   }
   else{
@@ -39,6 +48,12 @@ constructor(private httpService:HttpCallsService,
   }
 
 
-  }
+}
+
+seeOnMap(lat,long){
+ window.open('http://www.google.com/maps/place/'+lat+','+long+'/@'+lat+','+long+',10z',
+  '_blank');
+  window.focus();
+}
 
 }

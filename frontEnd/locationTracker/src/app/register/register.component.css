@@ -29,3 +29,13 @@ md-card-content{
     font-size:''; 
     font-weight: lighter;
 }
+
+
+md-card-header{
+color : white;
+background-color: #3f51b5;
+}
+
+.content{
+  background-color: #f9f9f9;
+}

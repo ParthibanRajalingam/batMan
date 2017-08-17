@@ -10,6 +10,6 @@ export const APP_ROUTES =[
     {path:'login',component:LoginComponent},
     {path:'home',component:HomeComponent},
     {path:'register',component:RegisterComponent},
-    {path:'trackingDetails',component:TrackingDetailsComponent}
+    {path:'home/trackingDetails',component:TrackingDetailsComponent}
 ];
 

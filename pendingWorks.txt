@@ -1,19 +1,25 @@
-validation
-error handling
+---------validation
+--------error handling
 UI Improvisation
-sort by date
-track_list ui
+-----------sort by date
+------------track_list ui
 concentrate more on UI
 Design an icon
 add footer
-activate through mail by sending mail link
 
-write css for mobile and desktop
+-----create mail server
+------activate through mail by sending mail link
+
+----write css for mobile and desktop
 
 create service for desktop too
 
-use event emitters to pass values between components instead of session
+--------use event emitters to pass values between components instead of session
 
 adding maps
 https://developers.google.com/maps/documentation/javascript/events#EventArguments
 https://stackoverflow.com/questions/15792655/add-marker-to-google-map-on-click
+
+
+READ:
+https://material.io/guidelines/style/imagery.html#imagery-best-practices

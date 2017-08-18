@@ -13,6 +13,28 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 var mongoUrl='mongodb://localhost:27017/trackMyDevice';
 
+
+app.get('/trackingDetails', function (req, res) {
+
+console.log('getting tracking details---'+req.query.imei);
+
+	var queryParam={"imei":req.query.imei};
+	console.log(queryParam);
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	 res.setHeader('Content-Type', 'application/json');
+	  mongoConnect.findAll(mongoUrl,'tracking_details',queryParam,function(result){
+	  	if(result != null){
+	  		console.log('SENDING RESSS'+result);
+	  	res.send(JSON.stringify(result));
+	  }
+	  else{
+	  	res.send(JSON.stringify({ "imei" : "false" }));	
+	  }
+  	
+  });
+
+})
+
 app.get('/devices', function (req, res) {
    /*fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
        console.log( data );

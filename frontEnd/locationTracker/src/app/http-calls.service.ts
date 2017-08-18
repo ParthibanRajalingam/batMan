@@ -16,7 +16,10 @@ login(user : any){
     }).map((data : Response) => data.json());
   }
 
-
+getTrackingDetails(imei){
+    return this.http.get('http://127.0.0.1:8081/trackingdetails?imei='+imei)
+    .map((response: Response) =>response.json());
+  }
 
   getUser(mail){
     return this.http.get('http://127.0.0.1:8081/devices?email='+mail)

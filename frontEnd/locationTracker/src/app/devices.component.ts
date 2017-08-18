@@ -56,5 +56,10 @@ seeOnMap(lat,long){
   window.focus();
 }
 
+onMoreDetails(imei : string){
+console.log('Device IMEI'+imei);
+    this.router.navigate(['home/trackingDetails'], { queryParams: { selectedDevice: imei } });
+}
+
 }
 

@@ -1,6 +1,6 @@
   <md-toolbar color="primary">
-  <span class="title">LOCATION TRACKER</span>
-<div *ngIf="(router.url != '/register')">
+  <span class="title">TRACK MY DEVICE</span>
+<div *ngIf="(router.url != '/register') && (router.url != '/resetPassword')">
   <span *ngIf="(router.url != '/')">
     <button md-icon-button [mdMenuTriggerFor]="menu"  *ngIf="(router.url != '/login')">
   <md-icon>more_vert</md-icon>

@@ -13,6 +13,16 @@ flag=result;
   });
 };
 
+var updateDocument =  function(db,collectionName,doc, newValues,callback) {
+   db.collection(collectionName).updateOne( doc,newValues, function(err, result) {
+if(err) throw err;
+ 
+docStore=result;
+    console.log("Updated a document"+result);
+    callback();
+  });
+};
+
 var findDocument =  function(db,collectionName,doc, callback) {
    db.collection(collectionName).findOne( doc, function(err, result) {
 if(err) throw err;
@@ -33,6 +43,17 @@ var findAllDocument =  function(db,collectionName,doc, callback) {
 });
 };
 
+var countDocument =  function(db,collectionName,doc, callback) {
+  console.log("Trying to count"+doc);
+   db.collection(collectionName).count(doc,function(error, result) {
+    if (error) throw error;
+    docStore=result;
+        console.log("found a document"+result);
+    callback();
+});
+   
+};
+
 
 module.exports={
 
@@ -50,7 +71,6 @@ MongoClient.connect(url, function(err, db) {
 }
 ,
 find: function(url,collectionName,doc,callback){
-  
 MongoClient.connect(url, function(err, db) {
 
   findDocument(db,collectionName,doc, function() {
@@ -61,11 +81,39 @@ MongoClient.connect(url, function(err, db) {
 }) ;
 },
 
+countDoc: function(url,collectionName,doc,callback){
+  
+MongoClient.connect(url, function(err, db) {
+
+  countDocument(db,collectionName,doc, function() {
+      db.close();
+      console.log('------'+docStore);
+      callback(docStore);
+  });
+}) ;
+
+
+},
+
 findAll: function(url,collectionName,doc,callback){
   
 MongoClient.connect(url, function(err, db) {
 
   findAllDocument(db,collectionName,doc, function() {
+      db.close();
+    //  console.log(docStore);
+      callback(docStore);
+  });
+}) ;
+
+
+},
+
+update: function(url,collectionName,doc,newValues,callback){
+  
+MongoClient.connect(url, function(err, db) {
+
+  updateDocument(db,collectionName,doc,newValues, function() {
       db.close();
     //  console.log(docStore);
       callback(docStore);

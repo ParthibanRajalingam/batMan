@@ -14,11 +14,15 @@ export class RegisterComponent implements OnInit {
   sysdate= Date.now();
   errorMessage='';
   registrationFlag: any;
+  dupCheckFlag : any;
   responseKey : string='result';
+  response : boolean=false;
 user={
   userName:'',
   email:'',
+  emailCheck:'',
   pwd:'',
+  cpwd:'',
   user_created_date: this.sysdate,
 salt:'',
 active:'Y',
@@ -37,17 +41,31 @@ premium_end_date:''
   ) { }
 
   onSubmit(){
+    this.response=true;
 this.httpService.registerUser(this.user).subscribe (data =>{
    this.registrationFlag=data[this.responseKey];
 
    if(this.registrationFlag=="true"){
      this.router.navigate(['login']);
      this.openSnackBar();
+     this.response=false;
    }
   
 });
 }
 
+checkExistingUser(){
+//console.log('---CALLING---'+this.dupCheckFlag);
+  this.httpService.checkUser(this.user.email).subscribe (data =>{
+   this.dupCheckFlag=data[this.responseKey];
+   if(this.dupCheckFlag=="true"){
+     this.user.emailCheck=this.user.email;
+   }
+   
+ // console.log('---TEST---'+this.dupCheckFlag);
+});
+
+}
 openSnackBar() {
     this.snackBar.open('REGISTRATION SUCCESS', 'close',{
       duration: 3000,

@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, } from '@angular/core';
 import { HttpModule }    from '@angular/http';
 import { FormsModule }   from '@angular/forms'; 
-import {MdButtonModule, MdCheckboxModule,MdInputModule,MdToolbarModule,MdCardModule,MdSnackBarModule,MdIconModule,
+import {MdButtonModule, MdCheckboxModule,MdInputModule,MdToolbarModule,MdCardModule,MdSnackBarModule,
+  MdIconModule,MdProgressBarModule,MdTooltipModule,
   MdMenuModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
@@ -15,6 +16,11 @@ import {  APP_ROUTES } from './app.routes';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { TrackingDetailsComponent } from './tracking-details/tracking-details.component';
+import { CustomFormsModule } from 'ng2-validation';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { SetNewPasswordComponent } from './set-new-password/set-new-password.component';
+import { NotAuthorisedComponent } from './not-authorised/not-authorised.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,16 +29,20 @@ import { TrackingDetailsComponent } from './tracking-details/tracking-details.co
     LoginComponent,
     HomeComponent,
     RegisterComponent,
-    TrackingDetailsComponent
+    TrackingDetailsComponent,
+    ResetPasswordComponent,
+    SetNewPasswordComponent,
+    NotAuthorisedComponent
   ],
   imports: [
      RouterModule.forRoot(
-      APP_ROUTES,
-      { enableTracing: true } // <-- debugging purposes only
+      APP_ROUTES
+      ,{ useHash: true }
+      //{ enableTracing: true } // <-- debugging purposes only
     ),
-        
-    BrowserModule,FormsModule,MdButtonModule, MdCheckboxModule,MdInputModule,MdToolbarModule,
-    BrowserAnimationsModule,MdCardModule,HttpModule,MdSnackBarModule,MdMenuModule,MdIconModule
+        CustomFormsModule,
+    BrowserModule,FormsModule,MdButtonModule, MdCheckboxModule,MdInputModule,MdToolbarModule,MdTooltipModule,
+    BrowserAnimationsModule,MdCardModule,HttpModule,MdSnackBarModule,MdMenuModule,MdProgressBarModule,MdIconModule
   ],
    exports: [MdButtonModule, MdCheckboxModule,MdInputModule,MdToolbarModule,
    BrowserAnimationsModule,MdCardModule],

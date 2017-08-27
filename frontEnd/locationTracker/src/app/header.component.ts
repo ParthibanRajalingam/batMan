@@ -8,7 +8,7 @@ import { Router } from '@angular/router'
 })
 export class HeaderComponent implements OnInit {
 location='';
-  constructor( private router: Router) {
+  constructor( public router: Router) {
   }
   onSignOut(){
      sessionStorage.removeItem('key');

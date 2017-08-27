@@ -11,23 +11,26 @@ import {HttpCallsService} from '.././http-calls.service';
 export class LoginComponent implements OnInit {
   loginFlag :any;
   responseKey='result';
-errorMessage='';
+  response : boolean=false;
+  notSubmitted: boolean=true;
+errorMessage:boolean=false;
 user={
 email : '',
 pwd:''
 }
 inData :any =null;
 jsonInData: any = null;
-constructor(private router: Router,
+constructor(public router: Router,
 private httpService: HttpCallsService 
 ) { }
 
 onClick(){
-  this.errorMessage='';
+  this.errorMessage=false;
 }
 
 onSubmit(formData : NgForm){
-
+this.response=true;
+this.notSubmitted=false;
 this.httpService.login(this.user).subscribe (data =>{
    this.loginFlag=data[this.responseKey];
 //console.log('------------'+this.loginFlag);
@@ -38,7 +41,9 @@ sessionStorage.setItem('email',this.user.email);
      this.router.navigate(['/home']);
    }
    else{
-this.errorMessage="invalid credentials";
+     this.notSubmitted=true;
+this.errorMessage=true;
+this.response=false;
    }
   
 });

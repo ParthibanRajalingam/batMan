@@ -2,39 +2,68 @@
   <md-card-header>
     <md-card-title>LOGIN TO TRACK YOUR DEVICE</md-card-title>
   </md-card-header>
+  <div *ngIf="response">
+  <md-progress-bar mode="indeterminate"></md-progress-bar>
+  </div>
   <md-card-content>
     <form (ngSubmit)="onSubmit(formData)" #formData="ngForm">
     <table class="full-width" cellspacing="0"><tr><td>
       <div class="form-group">
     <md-input-container class="full-width">
       <input mdInput (click)="onClick()" type="email" placeholder="EMAIL ID" [(ngModel)]=user.email
-      ngModel name="email"
-      pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
-      required>
+      ngModel name="email"  #email="ngModel"
+      required email>
     </md-input-container>
       </div>
     </td>
+    <td *ngIf="email.errors?.email && email.touched">
+              <div class="example-tooltip-host" mdTooltip="Valid email please" mdTooltipPosition="before">
+                 <div >
+                   <md-icon id="error">priority_high</md-icon>
+                 </div>
+              </div>
+            </td>
     </tr>
     <tr><td>
       <div class="form-group">
     <md-input-container class="full-width">
       <input mdInput type="password" [(ngModel)]=user.pwd (click)="onClick()" placeholder="PASSWORD"
-       ngModel name="password"
+       ngModel name="password" #password="ngModel"
        required>
     </md-input-container>
       </div>
     </td>
+    <td *ngIf="password.errors?.required  && password.touched">
+              <div class="example-tooltip-host" mdTooltip="Please Enter password" mdTooltipPosition="before">
+                 <div >
+                   <md-icon id="error">priority_high</md-icon>
+                 </div>
+              </div>
+            </td>
     </tr>
-    <tr><td>
-    <button md-raised-button color='primary' type='submit' [disabled]="!formData.valid" >LOGIN</button></td>
+    <tr>
+
+      <td>
+    <button md-raised-button color='primary' type='submit' [disabled]="!formData.valid && notSubmitted" >LOGIN</button>
+              
+    </td>
+   
+        
+    </tr>
+    <tr *ngIf="errorMessage">
+       <td>
+    <p id="errorTxt" mdTooltip="Please Enter correct username and Password" mdTooltipPosition="above">
+      Invalid Credentials!</p> 
+   
+            </td>
     </tr>
     </table>
-   <div> {{errorMessage}}</div>
+
     </form>
   </md-card-content>
   <md-card-actions>
 
-  <a md-button routerLink="." class="fp" style="margin-right: 10%; color: #3f51b5;">Forgot Password?</a> 
+  <a md-button routerLink="/resetPassword" class="fp" style="margin-right: 10%; color: #3f51b5;">Forgot Password?</a> 
  
   <a md-button routerLink="/register"  style="margin-left: 10%; color: #3f51b5;">New User?</a> 
   

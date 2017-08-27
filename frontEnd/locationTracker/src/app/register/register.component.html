@@ -2,6 +2,9 @@
   <md-card-header>
     <md-card-title>REGISTER TO TRACK YOUR DEVICE</md-card-title>
   </md-card-header>
+  <div *ngIf="response">
+  <md-progress-bar mode="indeterminate"></md-progress-bar>
+  </div>
   <md-card-content>
     <form (ngSubmit)="onSubmit()" #formData="ngForm">
     <table class="full-width" cellspacing="0">
@@ -9,42 +12,81 @@
             <td>
                 <md-input-container class="full-width" >
       <input mdInput type="text"  placeholder="USERNAME" [(ngModel)]="user.userName"
-        name="username"
+        name="username" #username="ngModel" [rangeLength]="[4, 30]"
        >
        </md-input-container>
+            </td>
+            <td *ngIf="username.errors?.rangeLength">
+              <div class="example-tooltip-host" mdTooltip="Username must be atleast 4-30 characters!" mdTooltipPosition="before">
+                 <div >
+                   <md-icon id="error">priority_high</md-icon>
+                 </div>
+              </div>
             </td>
         </tr>
       <tr><td>
       <div class="form-group">
     <md-input-container class="full-width">
       <input mdInput  type="email" placeholder="EMAIL ID"
-       name="email" [(ngModel)]="user.email"  
-      pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
-      required>
+       name="email" [(ngModel)]="user.email"  #email="ngModel" (blur)="checkExistingUser()"
+      email required>
     </md-input-container>
+  
+      <input mdInput  type="email"  [hidden]="true" placeholder="EMAIL ID" value="user.emailCheck"
+       name="emailCheck" [(ngModel)]="user.emailCheck" #emailCheck="ngModel" [notEqualTo]="email"> 
       </div>
     </td>
+
+        <td *ngIf="emailCheck.errors?.notEqualTo && email.touched">
+              <div class="example-tooltip-host" mdTooltip="This email is already registered. Kindly Login." mdTooltipPosition="before">
+                 <div >
+                   <md-icon id="error">priority_high</md-icon>
+                 </div>
+              </div>
+            </td>
+        <td *ngIf="email.errors?.email && email.touched">
+              <div class="example-tooltip-host" mdTooltip="Valid email please" mdTooltipPosition="before">
+                 <div >
+                   <md-icon id="error">priority_high</md-icon>
+                 </div>
+              </div>
+            </td>
     </tr>
     <tr><td>
       <div class="form-group">
     <md-input-container class="full-width">
-      <input mdInput type="password" [(ngModel)]="user.pwd"  placeholder="PASSWORD"
-        name="password"
+      <input mdInput type="password" [(ngModel)]="user.pwd" #password="ngModel"  placeholder="PASSWORD"
+        name="password" #password="ngModel"
        required>
     </md-input-container>
       </div>
     </td>
+      <td *ngIf="password.errors?.required  && password.touched">
+              <div class="example-tooltip-host" mdTooltip="Please Enter password" mdTooltipPosition="before">
+                 <div >
+                   <md-icon id="error">priority_high</md-icon>
+                 </div>
+              </div>
+            </td>
+
     </tr>
       <tr><td>
       <div class="form-group">
     <md-input-container class="full-width">
       <input mdInput type="password" [(ngModel)]="user.cpwd"
       placeholder="CONFIRM PASSWORD"
-        name="confirmPassword"
+        name="certainPassword" name="certainPassword" #certainPassword="ngModel" [equalTo]="password"
        required >
     </md-input-container>
       </div>
     </td>
+       <td *ngIf="certainPassword.touched && certainPassword.errors?.equalTo">
+              <div class="example-tooltip-host" mdTooltip="The Passwords Should match" mdTooltipPosition="before">
+                 <div >
+                   <md-icon id="error">priority_high</md-icon>
+                 </div>
+              </div>
+            </td>
     </tr>
     <tr><td>
     <button md-raised-button color='primary' type='submit' [disabled]="!formData.valid" >REGISTER</button></td>

@@ -1,9 +1,9 @@
 .content{
     width:100%;
-    min-width: 20%;
-    max-width: 25%;
-    max-height: 40%;
-    min-height: 20%;
+    min-width: 25%;
+    max-width: 300px;
+    max-height: 350px;
+    min-height: 50%;
     margin:10% auto 0 auto;
 }
 md-card{

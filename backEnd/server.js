@@ -3,7 +3,23 @@ var mongoConnect = require('./mongoConnection');
 var express = require('express');
 var app = express();
 var fs = require("fs");
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+var nodemailer= require('nodemailer');//Mail
+var subject='';
+var receiver='';
+var content='';
+var sender='trackmydevice.tmd@gmail.com';
+var passEmail='trackmydevice13!';
+var uiUrl='http://localhost:4200/#/';
+var transporter= nodemailer.createTransport({service: 'gmail',
+
+	auth:{
+		user:sender,
+		pass:passEmail
+}
+	});
+
+
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
@@ -60,6 +76,29 @@ console.log('getting devices---'+req.query.email);
 
 })
 
+app.post('/checkLogin',function(req,res,err){
+	console.log('CHECK LOGGING IN----'+req.body);
+
+	var queryParam={"pwd":req.body.pwd};
+	console.log(queryParam);
+	var inPassword=req.body.pwd;
+	console.log(inPassword);
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	 res.setHeader('Content-Type', 'application/json');
+
+	  mongoConnect.find(mongoUrl,'user_details',queryParam,function(result){
+	  	if(result != null){
+	  	var inPwd = saltAndHash.sha512(inPassword, result.salt);
+	  	var email=result.email;
+		res.send(JSON.stringify({ "result" : "true","email":email }));
+	  }
+	  else{
+	  	res.send(JSON.stringify({ "result" : "false" }));	
+	  }
+  	
+  });
+})
+
 app.post('/login',function(req,res,err){
 	console.log('LOGGING IN----'+req.body);
 
@@ -90,9 +129,90 @@ app.post('/login',function(req,res,err){
   });
 })
 
+app.get('/checkUser',function(req,res){
+	var mail={"email": req.query.email};
+	var checkExistingUser=mongoConnect.countDoc(mongoUrl,'user_details',mail,function(count){
+console.log("Checking COunt",count);
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	 res.setHeader('Content-Type', 'application/json');
+	  if(count==0){
+
+  	 res.send(JSON.stringify({ "result" : "false" }));
+	  	}
+	  	else{
+	  		res.send(JSON.stringify({ "result" : "true" }));
+	  	}
+	 
+	});
+})
+
+app.get('/resetPassword',function(req,res){
+	var mail={"email": req.query.email};
+
+console.log('QUER----'+mail);
+	var resetPwd=mongoConnect.find(mongoUrl,'user_details',mail,function(result){
+console.log("Checking valid user",result);
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	 res.setHeader('Content-Type', 'application/json');
+	  	if(result != null){
+	  	var correctPwd=result.pwd;
+	  	receiver= req.query.email;
+	  	subject="Reset Password link";
+	  	content="http://127.0.0.1:8081/setNewPassword?q="+correctPwd;
+	  	var mailOptions={
+	from:sender,
+	to:receiver,
+	subject: subject,
+	text: content
+};
+	  	transporter.sendMail(mailOptions, function(error, info){
+ 		 if (error) {
+  		  console.log(error);
+  		  res.send(JSON.stringify({ "result" : "false"}));
+ 		 } else {
+ 		 	res.send((JSON.stringify({ "result" : "true" })));
+   		 console.log('Email sent: ' + info.response);
+ 		 }
+		});
+	  }
+	  else{
+	  	res.send(JSON.stringify({ "result" : "invalid" }));	
+	  }
+	 
+	});
+})
+
+
+app.get('/setNewPassword',function(req,res){
+var pwd={"pwd": req.query.q};
+
+console.log('setNewPwd----'+req.query.q);
+	var resetPwd=mongoConnect.find(mongoUrl,'user_details',pwd,function(result){
+console.log("Checking valid user",result);
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	 res.setHeader('Content-Type', 'application/json');
+	  	if(result != null){
+	  	var url=uiUrl+'setNewPassword?&q='+req.query.q;
+	  	console.log('URL REDIRECTION--'+url);
+	  	res.redirect(url);
+	  }
+	  else{
+	  	var url=uiUrl+'notAuth';
+	  	res.redirect(url);
+	  	//res.send(JSON.stringify({ "result" : "false" }));	
+	  }
+	 
+	});
+})
+
+
 app.post('/registerUser', function (req, res) {
 
-	console.log('REGISTERING USER-pwd'+req.body.email);
+var mail={"email": req.body.email};
+var checkExistingUser=mongoConnect.countDoc(mongoUrl,'user_details',mail,function(count){
+console.log("Checking COunt",count);
+	  if(count==0){
+console.log('REGISTERING USER-pwd'+req.body.email);
 	
 	console.log(req.body);
 	var salt = saltAndHash.genSalt(16);
@@ -113,32 +233,48 @@ app.post('/registerUser', function (req, res) {
 	  	}
 	 
 	});
+	  	}
+	  	else{
+	  		res.send(JSON.stringify({ "result" : "duplicate" }));
+	  	}
+	 
+	});
+	
 
 })
 
-app.get('/:id', function (req, res) {
-   // First read existing users.
-   fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
-      var users = JSON.parse( data );
-      var user = users["user" + req.params.id] ;
-      console.log( user );
-       // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-      res.end( JSON.stringify(user));
-   });
+app.post('/resettingPwd', function (req, res) {
+
+var mail={"email": req.body.email};
+
+
+console.log('RESETTING USER-pwd'+req.body.email);
+	
+	console.log(req.body);
+	var salt = saltAndHash.genSalt(16);
+	var passwordData = saltAndHash.sha512(req.body.pwd, salt);
+	req.body.salt= salt;
+	req.body.pwd=passwordData;
+	console.log(req.body.salt+'HASHED--'+passwordData);
+	var updation=mongoConnect.update(mongoUrl,'user_details',mail,req.body,function(result){
+			res.setHeader('Access-Control-Allow-Origin', '*');
+	 res.setHeader('Content-Type', 'application/json');
+
+	  if(result.ok=1){
+
+  	 res.send(JSON.stringify({ "result" : "true" }));
+	  	}
+	  	else{
+	  		res.send(JSON.stringify({ "result" : "false" }));
+	  	}
+	 
+	});	 
+
+	
+
 })
 
-app.delete('/deleteUser', function (req, res) {
 
-   // First read existing users.
-   fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
-       data = JSON.parse( data );
-       delete data["user" + 2];
-       
-       console.log( data );
-       res.end( JSON.stringify(data));
-   });
-})
 
 // Add headers
 app.use(function (req, res, next) {

@@ -25,11 +25,15 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
 
+var server_port=process.env.OPENSHIFT_NODEJS_PORT || 8080;
+var server_ip_address= process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 
+var mongoUrl='mongodb://localhost:27017/trackMyDevice'; //dev param
 
-var mongoUrl='mongodb://localhost:27017/trackMyDevice';
-
-
+/*var db_user_name='admin';
+var db_pwd='1HBNxnHpbBzH';
+var mongoUrl= 'mongodb://'+db_user_name+':'+db_pwd+'@'+process.env.OPENSHIFT_MONGODB_DB_HOST+':'+process.env.OPENSHIFT_MONGODB_DB_PORT+'/firstapp' || 'mongodb://localhost:27017/trackMyDevice';*/
+//--------------------------------------
 app.get('/trackingDetails', function (req, res) {
 
 console.log('getting tracking details---'+req.query.imei);
@@ -136,7 +140,6 @@ console.log("Checking COunt",count);
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	 res.setHeader('Content-Type', 'application/json');
 	  if(count==0){
-
   	 res.send(JSON.stringify({ "result" : "false" }));
 	  	}
 	  	else{
@@ -159,11 +162,16 @@ console.log("Checking valid user",result);
 	  	receiver= req.query.email;
 	  	subject="Reset Password link";
 	  	content="http://127.0.0.1:8081/setNewPassword?q="+correctPwd;
+		htmlCOntent= "Hi User,<br><br>Please click the below link to change your password."+ 
+	  	"If you have not generated this reset link, don't be alarmed. Your account is still scecure. <br><br>"+content
+	  	+"<br><br> Regards, <br> TMD Team.";
+
 	  	var mailOptions={
 	from:sender,
 	to:receiver,
 	subject: subject,
-	text: content
+	//text: content,
+	html: htmlCOntent
 };
 	  	transporter.sendMail(mailOptions, function(error, info){
  		 if (error) {
@@ -296,7 +304,17 @@ app.use(function (req, res, next) {
     next();
 });
 
-var server = app.listen(8081,"127.0.0.1", function () {
+/*var server = app.listen(8081,"127.0.0.1", function () {
+
+  var host = server.address().address
+  var port = server.address().port
+//  var f={"email":"parthiban.rajalingam@gmail.com"};
+  console.log("HOST--"+host);
+  console.log("Example app listening at http://%s:%s", host, port)
+
+})*/
+
+var server = app.listen(server_port,server_ip_address, function () {
 
   var host = server.address().address
   var port = server.address().port

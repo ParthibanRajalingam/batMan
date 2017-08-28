@@ -10,11 +10,12 @@ import { Router,ActivatedRoute } from '@angular/router';
 })
 export class ResetPasswordComponent implements OnInit {
 emailValue : string='';
-resetFlag : boolean;
+resetFlag : string;
 responseKey : string ="result";
 response : boolean;
 emailCheck : string;
-notRegistered : boolean =false;
+registered : string ="true";
+canSubmit: boolean=false;
 constructor(private route: ActivatedRoute,
     private router: Router, private httpService:HttpCallsService,public snackBar: MdSnackBar,) { }
 
@@ -24,22 +25,29 @@ constructor(private route: ActivatedRoute,
 checkExistingUser(){
 //console.log('---CALLING---'+this.dupCheckFlag);
   this.httpService.checkUser(this.emailValue).subscribe (data =>{
-   this.notRegistered=data[this.responseKey];
-   if(this.notRegistered=false){
-    // this.emailCheck=this.emailValue;
+   this.registered=data[this.responseKey];
+
+   if(this.registered=="false"){
+     this.emailCheck=this.emailValue;
+     this.canSubmit=false;
+          console.log('---new value---'+this.emailCheck);
    }
-  console.log('---TEST---'+this.notRegistered);
+   else{
+     this.emailCheck='';
+     this.canSubmit=true;
+   }
+     console.log('---TEST---'+this.registered);
 });
 
 }
 onSubmit(){
   this.response=true;
+  this.canSubmit =false;
       this.httpService.resetPwd(this.emailValue).subscribe (data =>{
    this.resetFlag=data[this.responseKey];
        console.log('RESONSE---'+this.resetFlag);
-               if(this.resetFlag=true){
+               if(this.resetFlag=="true"){
                   this.router.navigate(['login']);
-
                       this.response=false;
                                             this.openSnackBar();
    
@@ -49,7 +57,7 @@ onSubmit(){
 
   openSnackBar() {
     this.snackBar.open('RESET PASSWORD LINK HAS BEEN SENT TO YOUR EMAIL', 'close',{
-      duration: 10000,
+      duration: 5000,
     });
   }
 }

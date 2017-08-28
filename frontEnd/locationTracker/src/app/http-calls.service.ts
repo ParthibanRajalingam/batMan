@@ -6,7 +6,7 @@ import 'rxjs/Rx';
 export class HttpCallsService {
 
   prodUrl : string='http://firstapp-alphamode.rhcloud.com';
-  devUrl :string='http://127.0.0.1:8081/';
+  devUrl :string='http://127.0.0.1:8080/';
 
   constructor(private http:Http) { }
 login(user : any){

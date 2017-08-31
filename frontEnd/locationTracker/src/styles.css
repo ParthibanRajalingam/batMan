@@ -3,9 +3,9 @@
 
 html{
     font-family: 'Roboto', sans-serif;
-    background: #ece9e6; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #ece9e6, #ffffff); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #ece9e6, #ffffff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #5e42a6; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #5e42a6, #5e42a6); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #5e42a6, #5e42a6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 #error{
@@ -18,4 +18,12 @@ html{
   font-size: 15px; 
   color: rgba(255, 0, 0, 0.6);
   margin: 0px 0px;
+}
+
+body{
+  background-image: url(assets/images/intro.svg);
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
 }

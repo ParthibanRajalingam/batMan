@@ -10,7 +10,10 @@ var receiver='';
 var content='';
 var sender='trackmydevice.tmd@gmail.com';
 var passEmail='trackmydevice13!';
-var uiUrl='http://localhost:4200/#/';
+// var uiUrl='http://localhost:4200/#/';
+// var devBUrl-"http://127.0.0.1:8080";
+var uiUrl='http://trackmydevice-alphamode.rhcloud.com/';
+var devBUrl-"firstapp-alphamode.rhcloud.com";
 var transporter= nodemailer.createTransport({service: 'gmail',
 
 	auth:{
@@ -161,7 +164,7 @@ console.log("Checking valid user",result);
 	  	var correctPwd=result.pwd;
 	  	receiver= req.query.email;
 	  	subject="Reset Password link";
-	  	content="http://127.0.0.1:8081/setNewPassword?q="+correctPwd;
+	  	content=devBUrl+"/setNewPassword?q="+correctPwd;
 		htmlCOntent= "Hi User,<br><br>Please click the below link to change your password."+ 
 	  	"If you have not generated this reset link, don't be alarmed. Your account is still scecure. <br><br>"+content
 	  	+"<br><br> Regards, <br> TMD Team.";

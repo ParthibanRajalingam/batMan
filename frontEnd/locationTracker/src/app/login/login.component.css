@@ -28,6 +28,55 @@ md-card-content{
 .fp{
     font-size:''; 
     font-weight: lighter;
+    margin-right: 10%; 
+    color: #3f51b5;
+}
+
+.nu{
+    margin-left: 10%; 
+    color: #3f51b5;
+}
+
+md-card-header{
+color : white;
+background-color: #3f51b5;
+}
+
+.content{
+  background-color: #f9f9f9;
+}
+
+
+@media only screen and (min-width: 320px) {
+    .content {
+        width: 100%;
+  max-width: 250px;
+    max-height: 350px;
+    min-height: 50%;
+    }
+
+    md-card{
+    margin:10px;
+    }
+
+     
+md-card-title{
+    margin: 13px;
+     font-weight: bold;
+}
+
+md-card-content{
+    margin:5px;
+}
+
+.full-width {
+  margin-left: 8%;
+  width: 80%;
+}
+
+.fp{
+    font-size:''; 
+    font-weight: lighter;
 }
 
 
@@ -38,4 +87,6 @@ background-color: #3f51b5;
 
 .content{
   background-color: #f9f9f9;
+}
+
 }

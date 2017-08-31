@@ -30,9 +30,12 @@ checkExistingUser(){
    if(this.registered=="false"){
      this.emailCheck=this.emailValue;
      this.canSubmit=false;
+     this.response=false;
+     
           console.log('---new value---'+this.emailCheck);
    }
    else{
+    this.sendMail();
      this.emailCheck='';
      this.canSubmit=true;
    }
@@ -41,8 +44,14 @@ checkExistingUser(){
 
 }
 onSubmit(){
-  this.response=true;
+    this.response=true;
   this.canSubmit =false;
+  this.checkExistingUser();
+}
+
+sendMail(){
+  if(this.registered=="true"){
+  console.log(this.registered);
       this.httpService.resetPwd(this.emailValue).subscribe (data =>{
    this.resetFlag=data[this.responseKey];
        console.log('RESONSE---'+this.resetFlag);
@@ -53,6 +62,11 @@ onSubmit(){
    
    }
 });
+}
+else{
+  this.response=false;
+  this.canSubmit=true;
+}
 }
 
   openSnackBar() {

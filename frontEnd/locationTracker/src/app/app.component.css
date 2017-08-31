@@ -9,3 +9,16 @@ md-card{
 md-card-content{
     margin:5px;
 }
+.header{
+     display: -webkit-flex;
+    display: none;
+}
+
+.con{
+    background-image: url(../assets/images/intro.svg);
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    background-color: red;
+}

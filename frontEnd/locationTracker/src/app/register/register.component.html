@@ -29,7 +29,7 @@
     <md-input-container class="full-width">
       <input mdInput  type="email" placeholder="EMAIL ID"
        name="email" [(ngModel)]="user.email"  #email="ngModel" (blur)="checkExistingUser()"
-      email required>
+      email required> 
     </md-input-container>
   
       <input mdInput  type="email"  [hidden]="true" placeholder="EMAIL ID" value="user.emailCheck"

@@ -1,7 +1,22 @@
 .title{
 
-    width:50%;
+
     margin:0 auto;
 
 }
 
+.txt{
+    height:5%;
+    width: 30%;
+    min-height: 50px;
+    min-width: 150px;
+ 
+}
+
+
+.owl{
+height:8%;
+    width: 5%;
+       min-height: 25px;
+    min-width: 40px
+}

@@ -1,3 +1,57 @@
+/*//desktop css*/
+@media only screen and (min-width: 1080px) {
+    .content{
+    width:10%;
+    min-width: 25%;
+    max-width: 300px;
+    max-height: 350px;
+    min-height: 50%;
+    margin:15% 30% 10% 60%;
+}
+
+md-card{
+    margin:10px;
+    }
+
+     
+md-card-title{
+    margin: 13px;
+     font-weight: bold;
+}
+
+md-card-content{
+    margin:5px;
+}
+
+.full-width {
+  margin-left: 8%;
+  width: 80%;
+}
+
+.fp{
+    font-size:''; 
+    font-weight: lighter;
+    margin-right: 10%; 
+    color: #3f51b5;
+}
+
+.nu{
+    margin-left: 10%; 
+    color: #3f51b5;
+}
+
+md-card-header{
+color : white;
+background-color: #3f51b5;
+}
+
+.content{
+  background-color: #f9f9f9;
+}
+
+}
+
+@media only screen and (max-width: 1080px) {
 .content{
     width:100%;
     min-width: 25%;
@@ -46,6 +100,7 @@ background-color: #3f51b5;
   background-color: #f9f9f9;
 }
 
+}
 
 @media only screen and (min-width: 320px) {
     .content {
@@ -64,6 +119,7 @@ md-card-title{
     margin: 13px;
      font-weight: bold;
 }
+
 
 md-card-content{
     margin:5px;

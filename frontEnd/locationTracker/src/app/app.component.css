@@ -1,3 +1,4 @@
+@media only screen and (max-width: 1080px) {
 .content{
     width:50%;
     margin:0 auto;
@@ -9,16 +10,36 @@ md-card{
 md-card-content{
     margin:5px;
 }
-.header{
-     display: -webkit-flex;
-    display: none;
-}
 
-.con{
-    background-image: url(../assets/images/intro.svg);
+.angularApplication{
+  background-image: url(/assets/images/intro.svg);
     background-position: top right;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-attachment: fixed;
-    background-color: red;
+}
+}
+/*desktop css*/
+@media only screen and (min-width: 1080px) {
+
+    .header{
+        float: left;
+        background-color: #312450;
+
+    }
+
+    .routing{
+        width: 80%;
+          float: right;  
+            background-image: url(/assets/images/intro.svg);
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment:scroll ;
+  
+    }
+
+
+    
+
 }

@@ -1,8 +1,6 @@
-.title{
-
-
-    margin:0 auto;
-
+@media only screen and (max-width: 1080px) {
+.head{
+    background-color: #312450;
 }
 
 .txt{
@@ -10,6 +8,7 @@
     width: 30%;
     min-height: 50px;
     min-width: 150px;
+    float: right;
  
 }
 
@@ -18,5 +17,28 @@
 height:8%;
     width: 5%;
        min-height: 25px;
-    min-width: 40px
+    min-width: 40px;
+    float: left;
+}
+}
+/*desktop css*/
+@media only screen and (min-width: 1080px) {
+
+.head{
+    background-color: #312450;
+    margin:90% 0% 0% 0%;
+}
+
+.owl{
+   max-height: 150px;
+
+margin-left:50%;
+
+}
+
+.txt{
+display: none;
+ max-height: 50px;
+}
+
 }
